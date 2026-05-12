@@ -129,15 +129,16 @@ if (contactForm && typeof emailjs !== "undefined") {
 // =========================
 
 window.addEventListener("load", () => {
-
   const splash = document.getElementById("splash-screen");
 
-  if (splash) {
+  if (!splash) return;
+
+  // allow browser paint first (prevents flash glitches)
+  requestAnimationFrame(() => {
     setTimeout(() => {
       splash.classList.add("hide");
-    }, 1500);
-  }
-
+    }, 600); // short, smooth exit animation
+  });
 });
 
 // =========================
@@ -187,6 +188,23 @@ window.addEventListener("scroll", () => {
 
 });
 
+const phoneBtn = document.getElementById("copyPhone");
+
+if (phoneBtn) {
+  phoneBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const phoneNumber = "+2347059728014";
+    navigator.clipboard.writeText(phoneNumber);
+
+    phoneBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+    
+    setTimeout(() => {
+      phoneBtn.innerHTML = '<i class="fa-solid fa-phone"></i> +234 705 972 8014';
+    }, 2000);
+  });
+}
+
 // =========================
 // SCROLL TO TOP BUTTON
 // =========================
@@ -213,6 +231,8 @@ if (scrollBtn) {
 };
 
 }
+
+document.getElementById("year").textContent = new Date().getFullYear();
 
 document.addEventListener("click", function (e) {
   const menu = document.querySelector(".nav-links");

@@ -14,7 +14,17 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="icon" type="image/png" href="images/logo.png">
+  <!-- Main Browser Favicon -->
+<link rel="icon" type="image/png" href="images/logo.png">
+
+<!-- App / Mobile Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+<link rel="manifest" href="site.webmanifest">
   
   <!-- Font Awesome -->
   <link rel="stylesheet"
@@ -35,6 +45,7 @@
     <p>Design • Development • Digital Craft</p>
 
   </div>
+  <div class="loader"></div>
 </div>
 
 <div id="progress-bar"></div>
@@ -43,10 +54,10 @@
   <header>
     <nav class="navbar">
 
-  <div class="logo">
+<a href="index.html" class="logo">
   <img src="images/logo.png" alt="Muaz Web Studio Logo">
-  <span>Muaz Web Studio</span>
-</div>
+  <span><b class="brand-name">Muaz</b> Web Studio</span>
+</a>
 
 
   <ul class="nav-links" id="navLinks">
@@ -72,7 +83,7 @@
   <!-- ================= HERO SECTION ================= -->
   <section id="hero" class="hero reveal">
 
-  <a href="#about" class="scroll-hint">
+  <a href="#contact" class="scroll-hint">
   ↓ Scroll to explore
 </a>
 
@@ -143,9 +154,7 @@
 <!-- ================= ABOUT SECTION ================= -->
 
 <section class="about reveal" id="about">
-<a href="#services" class="scroll-hint">
-  ↓ Scroll to explore
-</a>
+
   <!-- LEFT SIDE -->
   <div class="about-image">
 
@@ -181,8 +190,8 @@
     </h2>
 
     <p class="about-text">
-      I’m Muaz, a web designer and developer focused on creating clean, responsive, and professional websites for businesses, schools, and personal brands. My goal is to combine creativity with functionality to build websites that are not only visually appealing but also fast, user-friendly, and optimized to perform seamlessly across all devices.
-    </p>
+I’m Muaz, a web designer and developer focused on creating clean, responsive, and professional websites for businesses, schools, and personal brands. My goal is to combine creativity with functionality to build websites that are not only visually appealing but also fast, user-friendly, and optimized to perform seamlessly across all devices.
+</p>
 
 
     <!-- STATS -->
@@ -212,9 +221,7 @@
 <!-- ================= SERVICES SECTION ================= -->
 
 <section class="services reveal" id="services">
-<a href="#projects" class="scroll-hint">
-  ↓ Scroll to explore
-</a>
+
   <!-- SECTION HEADER -->
   <div class="section-header">
 
@@ -228,8 +235,8 @@
 
     <p class="section-description">
       I create modern, responsive, and user-friendly
-      websites tailored for businesses, schools,
-      and personal brands.
+      websites tailored for businesses, schools, and
+      personal brands.
     </p>
 
   </div>
@@ -307,7 +314,9 @@
       </h3>
 
       <p>
-        Fully optimized websites that deliver a seamless user experience across phones, tablets, and desktops.
+        Fully optimized websites that deliver a
+        seamless user experience across phones,
+        tablets, and desktops.
       </p>
 
     </div>
@@ -325,8 +334,9 @@
       </h3>
 
       <p>
-        High-converting landing pages designed to effectively showcase products, 
-        services, and digital marketing campaigns.
+        High-converting landing pages designed to
+        effectively showcase products, services, and
+        digital marketing campaigns.
       </p>
 
     </div>
@@ -344,7 +354,8 @@
       </h3>
 
       <p>
-        Revamping outdated websites with a clean, modern, and professional appearance.
+        Revamping outdated websites with a clean,
+        modern, and professional appearance.
       </p>
 
     </div>
@@ -356,9 +367,7 @@
 <!-- ================= PROJECTS SECTION ================= -->
 
 <section class="projects reveal" id="projects">
-<a href="#contact" class="scroll-hint">
-  ↓ Scroll to explore
-</a>
+
   <!-- SECTION HEADER -->
   <div class="section-header">
 
@@ -388,7 +397,9 @@
   <img src="screenshots/darululum.png" alt="Dar Al-Ulum Portal">
 
   <div class="project-content">
-    <h3>Dar Al-Ulum Portal</h3>
+    <h3>Dar Al-Ulum Portal<span class="featured-badge">
+  Featured
+</span></h3>
 
     <p>
       Modern educational platform with authentication,
@@ -465,6 +476,7 @@
       <span>HTML</span>
       <span>CSS</span>
       <span>JavaScript</span>
+      <span>Supabase</span>
     </div>
 
     <div class="project-links">
@@ -522,20 +534,17 @@
 
       <div class="contact-links">
 
+        <a href="tel:+2347059728014" id="copyPhone">
+  <span><i class="fa-solid fa-phone"></i> Phone</span>
+</a>
+
         <a href="https://wa.me/2347059728014" target="_blank">
-          <i class="fa-brands fa-whatsapp"></i>
-          WhatsApp Me
-        </a>
+  <span><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>
+</a>
 
-        <a href="mailto:muazsidiq7@gmail.com">
-          <i class="fa-solid fa-envelope"></i>
-          Send Email
-        </a>
-
-        <a href="https://github.com/muazsidiq" target="_blank">
-          <i class="fa-brands fa-github"></i>
-          GitHub
-        </a>
+<a href="mailto:muazsidiq7@gmail.com">
+  <span><i class="fa-solid fa-envelope"></i> Email</span>
+</a>
 
       </div>
 
@@ -567,8 +576,8 @@
 <footer class="footer">
 
   <p>
-    © 2026 Muaz Web Studio. All rights reserved.
-  </p>
+  © <span id="year"></span> Muaz Web Studio. All rights reserved.
+</p>
 
 </footer>
 
