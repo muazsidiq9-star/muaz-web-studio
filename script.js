@@ -213,3 +213,18 @@ if (scrollBtn) {
 };
 
 }
+
+document.addEventListener("click", function (e) {
+  const menu = document.querySelector(".nav-links");
+  const hamburger = document.querySelector(".hamburger");
+
+  if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+    menu.classList.remove("active");
+  }
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelector(".nav-links").classList.remove("active");
+  });
+});
