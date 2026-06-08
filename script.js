@@ -59,66 +59,75 @@ if (themeToggle) {
 }
 
 // =========================
-// EMAILJS CONTACT FORM
+// WEB3FORMS CONTACT FORM
 // =========================
 
 const contactForm = document.querySelector(".contact-form");
+const status = document.getElementById("form-status");
 
-if (contactForm && typeof emailjs !== "undefined") {
+if (contactForm) {
 
-  contactForm.addEventListener("submit", function(e){
+  contactForm.addEventListener("submit", async function (e) {
 
     e.preventDefault();
 
     const button = this.querySelector("button");
-
-    // Store original text
     const originalText = button.innerHTML;
 
-    // Loading state
-    button.innerHTML = "Sending...";
-    button.disabled = true;
+button.innerHTML = "Sending...";
+button.disabled = true;
 
-    emailjs.send(
-  "service_lurvzf3",
-  "template_5ikyn4f",
-  {
-    from_name: this.querySelector("input[type='text']").value,
-        from_email: this.querySelector("input[type='email']").value,
-        message: this.querySelector("textarea").value
-      },
-      "I0bQVvInt_gXvNDtR"
-    )
+status.textContent = "";
 
-    .then(() => {
+    try {
 
-      button.innerHTML = "Message Sent ✓";
+      const formData = new FormData(this);
 
-      alert("Message sent successfully!");
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
 
-      this.reset();
+      const result = await response.json();
 
-      setTimeout(() => {
-        button.innerHTML = originalText;
-        button.disabled = false;
-      }, 2000);
+if (result.success) {
 
-    })
+  status.style.color = "green";
+  status.textContent = "✅ Message sent successfully!";
 
-    .catch((error) => {
+  button.innerHTML = "Message Sent ✓";
 
-      console.error("EmailJS Error:", error);
+  this.reset();
 
-      button.innerHTML = "Failed";
+}
 
-      alert("Failed to send message.");
+else {
 
-      setTimeout(() => {
-        button.innerHTML = originalText;
-        button.disabled = false;
-      }, 2000);
+  status.style.color = "red";
+  status.textContent = "❌ Failed to send message.";
 
-    });
+  button.innerHTML = "Failed";
+
+}
+
+    } catch (error) {
+
+  console.error(error);
+
+  status.style.color = "red";
+  status.textContent = "❌ Network error. Please try again.";
+
+  button.innerHTML = "Failed";
+
+}
+
+    setTimeout(() => {
+      button.innerHTML = originalText;
+      button.disabled = false;
+    }, 2000);
 
   });
 
@@ -127,19 +136,31 @@ if (contactForm && typeof emailjs !== "undefined") {
 // =========================
 // SPLASH SCREEN CONTROL
 // =========================
+const splash = document.getElementById("splash-screen");
 
-window.addEventListener("load", () => {
-  const splash = document.getElementById("splash-screen");
+if (splash) {
 
-  if (!splash) return;
+  if (localStorage.getItem("splashShown")) {
 
-  // allow browser paint first (prevents flash glitches)
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      splash.classList.add("hide");
-    }, 600); // short, smooth exit animation
-  });
-});
+    splash.remove();
+
+  } else {
+
+    splash.style.display = "flex";
+
+    localStorage.setItem("splashShown", "true");
+
+    window.addEventListener("load", () => {
+
+      setTimeout(() => {
+        splash.classList.add("hide");
+      }, 600);
+
+    });
+
+  }
+
+}
 
 // =========================
 // SCROLL PROGRESS BAR
